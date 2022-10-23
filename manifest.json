@@ -1,0 +1,23 @@
+{
+	"name": "Dark Pattern_highlight",
+	"version": "1.0",
+	"manifest_version": 3,
+	"description": "highlight optional information",
+	"background": {
+		"service_worker":"background.js"
+	},
+	"permissions":[
+		"scripting"
+	],
+	"host_permissions":[
+		"<all_urls>"
+	],
+	"action":{
+		"default_popup":"popup.html",
+
+		"default_icon" : {
+
+			"32": "icon.png"
+		}
+	}
+}
