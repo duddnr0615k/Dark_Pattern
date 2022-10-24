@@ -50,7 +50,7 @@
 		null;
 	}	
 	}
-
+	chrome.tabs.onUpdated.addListener(setBackGroundStart);
 	const test = setInterval(setBackGroundStart,1000);	
 	chrome.tabs.onUpdated.addListener(test);
 	// document.addEventListener('hashchange', setBackGroundStart);
