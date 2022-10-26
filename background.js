@@ -33,12 +33,10 @@
 				 element2.style.backgroundColor = 'yellow';
 				
 			}
-		
 		}
-		
 	}
 	
-	
+	   
 	chrome.tabs.onUpdated.addListener(setBackGroundStart);
 	
 	
