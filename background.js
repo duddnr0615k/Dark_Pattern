@@ -1,4 +1,3 @@
-
 	
 	// function handleMessage(request,sender,sendResponse){
 	// 	console.log(`good: ${request.greeting}`);
@@ -51,12 +50,12 @@
 		}
 
 		const fontArr=[];
-		for (const fontTest of document.querySelectorAll('a,button,p')){
+		for (const fontTest of document.querySelectorAll('a,button,p,span')){
 			fontArr.push(fontTest)
 		}
 		for (const fontTest2 of fontArr){
 
-			if(fontTest2.textContent.includes('탈퇴하기') || fontTest2.textContent.includes('탈퇴 하기') || fontTest2.textContent.includes('회원탈퇴') || fontTest2.textContent.includes('탈퇴') || fontTest2.textContent.includes('회원 탈퇴') ){
+			if(fontTest2.textContent.includes('탈퇴')){
 				if(fontTest2.textContent.length===4 || fontTest2.textContent.length===2 ||  fontTest2.textContent.length===5){
 					fontTest2.style.fontSize ='35px';
 					fontTest2.style.color = 'red';
@@ -74,7 +73,3 @@
 	chrome.tabs.onUpdated.addListener(setBackGroundStart);
 	const test = setInterval(setBackGroundStart,1000);	
 	chrome.tabs.onUpdated.addListener(test);
-
-	
-	
-	
