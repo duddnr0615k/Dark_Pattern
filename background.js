@@ -50,13 +50,13 @@
 		}
 
 		const fontArr=[];
-		for (const fontTest of document.querySelectorAll('a,button,p,span')){
+		for (const fontTest of document.querySelectorAll('a,button,p, a>span')){
 			fontArr.push(fontTest)
 		}
 		for (const fontTest2 of fontArr){
 
 			if(fontTest2.textContent.includes('탈퇴')){
-				if(fontTest2.textContent.length===4 || fontTest2.textContent.length===2 ||  fontTest2.textContent.length===5){
+				if(fontTest2.textContent.length===4 || fontTest2.textContent.length===5){
 					fontTest2.style.fontSize ='35px';
 					fontTest2.style.color = 'red';
 					fontTest2.style.backgroundColor ='yellow';
