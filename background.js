@@ -54,7 +54,6 @@
 		try{
 			for (const element3 of document.querySelectorAll('div')) {	
 				if (element3.style.display == 'none') {	
-  
 						if(element3.innerHTML.includes('checkbox') && element3.textContent.includes('이메일')){
 							element3.style.display = 'block';
 							element3.style.backgroundColor = 'yellow';
