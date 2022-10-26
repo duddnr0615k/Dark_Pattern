@@ -10,12 +10,13 @@
 		chrome.tabs.query({active: true, currentWindow: true},(tab) => {
 			chrome.scripting.executeScript({
 			target: {tabId: tab[0].id},
-			func: setHiddenBlock, //setBackGroundColor,
+			func: //setHiddenBlock, /*setBackGroundColor*/
 		});
-
 		});
 
 	}
+	//일단 기본으로 보이게 하는거 안되게 해놓음. 추후 수정바람
+	
 	// let test;
 	// test = setInterval(setBackGroundStart,1000);
 	
@@ -50,11 +51,11 @@
 		null;
 	}	
 	}
+	
 	function setHiddenBlock(){
 		try{
 			for (const element3 of document.querySelectorAll('div')) {	
 				if (element3.style.display == 'none') {	
-  
 						if(element3.innerHTML.includes('checkbox') && element3.textContent.includes('이메일')){
 							element3.style.display = 'block';
 							element3.style.backgroundColor = 'yellow';
@@ -66,6 +67,8 @@
 			null;
 		}
 	}
+	
+	
 		
 	chrome.tabs.onUpdated.addListener(setBackGroundStart);
 	const test = setInterval(setBackGroundStart,1000);	

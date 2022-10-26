@@ -6,6 +6,18 @@ function setBackGroundStart(){
 		chrome.scripting.executeScript({
 		target: {tabId: tab[0].id},
 		func: setBackGroundColor,
+		//func: setHiddenBlock,
+	});
+
+	});
+
+}
+
+function setBackGroundStart2(){
+	chrome.tabs.query({active: true, currentWindow: true},(tab) => {
+		chrome.scripting.executeScript({
+		target: {tabId: tab[0].id},
+		func: setHiddenBlock,
 	});
 
 	});
@@ -31,11 +43,28 @@ function setBackGroundColor(){
 	
 }
 
+
+function setHiddenBlock(){
+	try{
+		for (const element3 of document.querySelectorAll('div')) {	
+			if (element3.style.display == 'none') {	
+					if(element3.innerHTML.includes('checkbox') && element3.textContent.includes('이메일')){
+						element3.style.display = 'block';
+						element3.style.backgroundColor = 'yellow';
+					}	
+			}					
+		}
+	}
+	catch{
+		null;
+	}
+}
+
 elmColors[0].onclick =() =>{
 		
 	setBackGroundStart();
+	setBackGroundStart2()
 	
-
 }
 
 
