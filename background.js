@@ -29,6 +29,7 @@
 	
 		// alert("선택정보에 대해 다시 한번 확인해 주세요.");
 
+		//선택 글자 하이라이트
 		try{
 		const selected= [];
 		for (const element of document.querySelectorAll('label,a,span,li>div,p,h3,h1,h2,h4')) {
@@ -49,6 +50,7 @@
 		
 		}
 
+		//회원탈퇴 글자 크게
 		const fontArr=[];
 		for (const fontTest of document.querySelectorAll('a,button,p, a>span')){
 			fontArr.push(fontTest)
@@ -64,11 +66,24 @@
 			
 			}
 		}
+		//minji
+		for (const element3 of document.querySelectorAll('div')) {	
+			if (element3.style.display == 'none') {	
+					if(element3.innerHTML.includes('checkbox') && element3.textContent.includes('이메일')){
+						element3.style.display = 'block';
+						element3.style.backgroundColor = 'yellow';
+					}	
+			}					
+		}
 		
 	}
 	catch{
 		null;
 	}	
+
+	
+
+
 	}
 	chrome.tabs.onUpdated.addListener(setBackGroundStart);
 	const test = setInterval(setBackGroundStart,1000);	
