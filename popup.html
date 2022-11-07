@@ -1,14 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style type="text/css">
-  * {
-    font-size: 15px;
-  }
+ * {
+      width: 280px;
+      height: 150px;
+      background-color: #f2f2f2;
+      margin : 0 ;
+ }
+ .danger{
+  width : 280px;
+  height: 80px;
+  
+ }
+ .icon{
+  width : 50px;
+  height : 50px;
+ }
+ span{
+  font-weight: bold;
+  font-size: 15px;
+  width: 100px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+ }
 </style>
 
 <body>
-  <input type="button" name="color" value="dark_pattern" >
-  <script src="optional_check.js" charset='UTF-8'></script>
+  
+  <div style="display: flex;flex-direction: column;">
+    <img class = "danger" src="images/danger.png" >
+    <div style="display: flex;">
+      <span>민감정보</span>
+      <img class = "icon" src="images/call2.png">
+      <img class = "icon" src="images/birthday2.png">
+      <img class = "icon" src="images/location2.png">
+    </div>
+    <div style="display: flex;">
+      <span>개인정보</span>
+      <img class = "icon" src="images/gender2.png">
+    </div>
+  </div>
+  <!-- <input type="button" name="color" value="dark_pattern" > -->
+  <!-- <script src="optional_check.js" charset='UTF-8'></script> -->
 </body>
 
 </html>

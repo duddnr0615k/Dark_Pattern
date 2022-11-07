@@ -13,21 +13,12 @@ function setBackGroundStart(){
 }
 
 function setBackGroundColor(){
-	
-	// alert("선택정보에 대해 다시 한번 확인해 주세요.");
-	let selected=[];
-	for (const element of document.querySelectorAll('label,a,span,li>div,p,h3,h1,h2,h4')) {
-		if (element.textContent.includes('선택')) {   
-			selected.push(element);		
-		}
-	}
-	for (const element2 of selected){
-		if (element2.textContent.includes('(선택') || element2.textContent.includes('( 선택') || element2.textContent.includes('[선택')|| element2.textContent.includes('[ 선택')){
-			element2.style.backgroundColor = 'yellow';
-			
-		}
-	
-	}
+		const url = '';
+		//test
+		for (el of document.querySelectorAll('a')){
+			if(el.textContent.includes('개인정보 처리방침')){
+			const url = el.href }}
+		
 	
 }
 

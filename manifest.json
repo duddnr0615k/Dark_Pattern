@@ -2,7 +2,7 @@
 	"name": "Dark Pattern_highlight",
 	"version": "1.0",
 	"manifest_version": 3,
-	"description": "highlight optional information",
+	"description": "Dark Pattern Prevent",
 	"background": {
 		"service_worker":"background.js"
 	},
@@ -17,7 +17,7 @@
 
 		"default_icon" : {
 
-			"32": "icon.png"
+			"32": "images/icon.png"
 		}
 	}
 }
