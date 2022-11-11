@@ -9,7 +9,7 @@
 		chrome.tabs.query({active: true, currentWindow: true},(tab) => {
 			chrome.scripting.executeScript({
 			target: {tabId: tab[0].id},
-			func: setBackGroundColor,
+			func: setBackGroundDarkPattern,
 			
 		});
 
@@ -25,10 +25,8 @@
 
 
 
-	function setBackGroundColor(){
+	function setBackGroundDarkPattern(){
 	
-		
-
 		
 		try{
 		const selected= [];
