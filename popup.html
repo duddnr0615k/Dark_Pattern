@@ -1,51 +1,308 @@
 <!DOCTYPE html>
 <html lang="ko">
+<head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style type="text/css">
- * {
-      width: 280px;
-      height: 150px;
-      background-color: #f2f2f2;
-      margin : 0 ;
- }
- .danger{
-  width : 280px;
-  height: 80px;
-  
- }
- .icon{
-  width : 50px;
-  height : 50px;
- }
- span{
-  font-weight: bold;
-  font-size: 15px;
-  width: 100px;
-  height: 50px;
-  text-align: center;
-  line-height: 50px;
- }
-</style>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    body{
+      width: 300px;
+      height: 500px;
+      margin : 0px;
+    }
+    .privacy_title{
+      /* border: 1px solid; */
+      width: 163px;
+      height: 51px;
+      border-radius: 8px;
+      margin : auto;
+      background-color: #00BBFF;
+      text-align: center;
+      line-height: 50px;
+      color: white;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: bold;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      position: relative;
+      z-index: 2;
+      font-size: 15px;
 
+  
+      
+    }
+    .privacy_danger{
+  
+      width: 140px;
+      height: 37px;
+      border-radius: 8px;
+      margin : auto;
+      background-color: #00BBFF;
+      text-align: center;
+      line-height: 30px;
+      color: white;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: bold;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      font-size: 15px;
+      top:10px;
+      position: relative;
+      z-index: 2;
+
+      
+    }
+    .layout_color1{
+      width: 300px;
+      height: 75px;
+      background-color: #D9D9D9;
+      position: relative;
+    
+
+    }
+    .layout_color2{
+      width: 300px;
+      height: 238px;
+      background-color: #D9D9D9;
+      position: relative;
+      display: none;
+    
+
+    }
+    
+    #danger_level{
+      width: 300px;
+      height: 50px;
+      padding-top: 20px;
+    }
+    .normal{
+      display: none;
+    }
+    .careful{
+      display: none;
+    }
+
+    .icon_call{
+      width: 46px;
+      height: 59px;
+    }
+    #travel{
+      display: none;
+    }
+    #drive{
+      display: none;
+    }
+    #health{
+      display: none;
+    }
+    #call{
+      display: none;
+    }
+    #address{
+      display: none;
+    }
+    #email{
+      display: none;
+    }
+    #gender{
+      display: none;
+    }
+    #device{
+      display: none;
+    }
+    #cookie{
+      display: none;
+    }
+    #birthday{
+      display: none;
+    }
+    #human_id{
+      display: none;
+    }
+    #credit{
+      display: none;
+    }
+    #location{
+      display: none;
+    }
+    #body_info{
+      display: none;
+    }
+    .no_info{
+      display: none;
+      position: absolute;
+      text-align: center;
+      margin : auto;
+      width: 200px;
+      height: 50px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+    }
+
+    .wait_data{
+      display: none;
+      position: absolute;
+      text-align: center;
+      margin : auto;
+      width: 200px;
+      height: 50px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+    }
+    .no_service{
+      display: none;
+      position: absolute;
+      text-align: center;
+      margin : auto;
+      width: 200px;
+      height: 50px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+    }
+    .no_privacy{
+      display: none;
+      position: absolute;
+      text-align: center;
+      margin : auto;
+      width: 200px;
+      height: 50px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+    }
+    .hidden{
+      display: none;
+    }
+
+    button{
+    width: 300px;
+    height: 80px;
+    border-radius: 15px;
+    background-color: #00BBFF;
+    color : #FFFFFF;
+    font-family: 'Noto Sans KR', sans-serif;
+    border-style: none;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: center;
+    transition-duration: 0.3s;
+    display: inline-block;
+    margin: auto;
+    margin-top: 200px;
+ }
+ button:active{
+     margin-top: 200px;
+     box-shadow: none;
+ }
+#hard{
+  display: none;
+}
+#normal{
+  display: none;
+}
+
+#easy{
+  display: none;
+}
+  </style>
+</head>
 <body>
-  
-  <div style="display: flex;flex-direction: column;">
-    <img class = "danger" src="images/보통.png" >
-    <div style="display: flex;">
-      <span>민감정보</span>
-      <img class = "icon" src="images/그림7.png">
-      <img class = "icon" src="images/그림12.png">
-      <img class = "icon" src="images/그림8.png">
+  <div class="hidden">
+    <div class ="privacy_title">
+      개인정보 위험도
     </div>
-    <div style="display: flex;">
-      <span>개인정보</span>
-      <img class = "icon" src="images/그림9.png">
+    <div class="layout_color1" style="bottom: 10px;">
+      <img id="danger_level" class="normal" src="./images/보통.png">
+      <img id="danger_level" class="careful" src="./images/신중.png">
     </div>
-  </div>
-  <!-- <input type="button" name="color" value="dark_pattern" > -->
-  <!-- <script src="optional_check.js" charset='UTF-8'></script> -->
-</body>
+  </div>  
+    <div id="hard">
+      <div class="privacy_danger" style="margin-top:30px; color: orange;">
+        주의
+      </div>
+    </div>
+    <div id="normal">
+      <div class="privacy_danger" style="margin-top:30px; color: yellow;">
+        보통
+      </div>
+    </div>
+      <div class="layout_color2">
+        <div style="display: flex; justify-content: space-between; padding-top: 80px; flex-wrap: wrap;">
+          <img  id="human_id" class = "icon_call" src="./images/human_id.png" style="width: 65px;">
+          <img  id="travel" class = "icon_call" src="./images/travel.png">
+          <img  id="drive" class = "icon_call" src="./images/drive.png" style="width: 65px;" >
+          <img  id="health" class = "icon_call" src="./images/health.png">
+          <img  id="credit" class = "icon_call" src="./images/credit.png">
+          <img  id="location" class = "icon_call" src="./images/location.png">
 
+          <img id="call" class = "icon_call" src="./images/call.png">
+          <img id="address" class = "icon_call" src="./images/address.png">
+          <img id="email" class = "icon_call" src="./images/email.png">
+          <img id="birthday" class = "icon_call" src="./images/birthday.png">
+          <img id="name" class = "icon_call" src="./images/name.png">
+          <img id="body_info" class = "icon_call" src="./images/body_info.png">
+          <img id="gender" class = "icon_call" src="./images/gender.png">
+
+          <img id="device" class = "icon_call" src="./images/device.png">
+          <img id="cookie" class = "icon_call" src="./images/cookie.png">
+        </div>
+      </div>
+    
+
+    <!-- <div id = "normal">
+      <div class="privacy_danger" style="margin-top:30px; color: yellow;">
+        위험도 보통
+      </div>
+      <div class="layout_color2">
+        <div style="display: flex; justify-content: space-evenly; padding-top: 15px;">
+          <img  id="human" class = "icon_call" src="./images/human_id.png" style="width: 65px;">
+          <img  id="travel" class = "icon_call" src="./images/travel.png">
+          <img  id="drive" class = "icon_call" src="./images/drive.png" style="width: 65px;" >
+          <img  id="health" class = "icon_call" src="./images/health.png">
+
+          <img id="call" class = "icon_call" src="./images/call.png">
+          <img id="address" class = "icon_call" src="./images/address.png">
+          <img id="email" class = "icon_call" src="./images/email.png">
+          <img id="birthday" class = "icon_call" src="./images/birthday.png">
+
+          <img id="device" class = "icon_call" src="./images/device.png">
+          <img id="gender" class = "icon_call" src="./images/gender.png">
+          <img id="cookie" class = "icon_call" src="./images/cookie.png">
+        </div>
+      </div>
+    </div>
+
+    <div id = "easy">
+      <div class="privacy_danger" style="margin-top:30px; color: green;">
+        위험도 안심
+      </div>
+      <div class="layout_color2">
+        <div style="display: flex; justify-content: space-evenly; padding-top: 15px;">
+          <img  id="human" class = "icon_call" src="./images/human_id.png" style="width: 65px;">
+          <img  id="travel" class = "icon_call" src="./images/travel.png">
+          <img  id="drive" class = "icon_call" src="./images/drive.png" style="width: 65px;" >
+          <img  id="health" class = "icon_call" src="./images/health.png">
+
+          <img id="call" class = "icon_call" src="./images/call.png">
+          <img id="address" class = "icon_call" src="./images/address.png">
+          <img id="email" class = "icon_call" src="./images/email.png">
+          <img id="birthday" class = "icon_call" src="./images/birthday.png">
+
+          <img id="device" class = "icon_call" src="./images/device.png">
+          <img id="gender" class = "icon_call" src="./images/gender.png">
+          <img id="cookie" class = "icon_call" src="./images/cookie.png">
+        </div>
+      </div>
+    </div> -->
+
+  <h3 class="no_info">정보가 없습니다.</h3>
+  <h3 class="wait_data">잠시만 기다려주세요!!</h3>
+  <h3 class="no_service">서비스를 실행할 수 없는 사이트입니다.</h3>
+  <h3 class="no_privacy">개인정보처리방침이 없습니다.</h3>
+  <button class="btn" type="button">Click!</button>
+  <script src="render.js" charset='UTF-8'></script>
+</body>
 </html>

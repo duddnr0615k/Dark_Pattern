@@ -1,33 +1,31 @@
 	
-	// function handleMessage(request,sender,sendResponse){
-	// 	console.log(`good: ${request.greeting}`);
-	// 	sendResponse({response: "Response from background script"});
-	// }
+
 	
-	// chrome.runtime.onMessage.addListener(handleMessage);
 	function setBackGroundStart(){
 		chrome.tabs.query({active: true, currentWindow: true},(tab) => {
+			
+			try{
+			
 			chrome.scripting.executeScript({
 			target: {tabId: tab[0].id},
 			func: setBackGroundDarkPattern,
 			
 		});
-
+			}
+			catch{
+				null;
+			}
 		});
+		
 
 	}
 
 
-
-	// let test;
-	// test = setInterval(setBackGroundStart,1000);
 	
-
 
 
 	function setBackGroundDarkPattern(){
 	
-		
 		try{
 		const selected= [];
 		//pseudo css로 선택글자를 매칭하는 경우 
@@ -101,22 +99,21 @@
 					fontTest2.style.backgroundColor ='yellow';}
 				
 				//탈퇴 글자 포함 4~8글자인 경우에만 
-				else if(fontTest2.textContent.length===4 || fontTest2.textContent.length===5 || fontTest2.textContent.length===6 || fontTest2.textContent.length===8){
+				else if(fontTest2.textContent.replaceAll(' ','').length===4){
 					fontTest2.style.fontSize ='35px';
 					fontTest2.style.color = 'red';
 					fontTest2.style.backgroundColor ='yellow';}
 			
 			
 			}
-		}		
-
-		
+		}			
 		
 	}
 	catch{
 		null;	
 }
 }
+
 
 	chrome.tabs.onUpdated.addListener(setBackGroundStart);
 	const test = setInterval(setBackGroundStart,1000);	
