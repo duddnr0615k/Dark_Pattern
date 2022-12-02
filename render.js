@@ -1,7 +1,5 @@
 
-function getKeyByValue(obj,value){
-    return Object.keys(obj).find(key => obj[key] === value);
-}
+
 
 function setUrl (){
 chrome.tabs.query({active: true, currentWindow: true},(tab) => {
@@ -23,8 +21,11 @@ chrome.tabs.query({active: true, currentWindow: true},(tab) => {
         })
         .then(response => response.json())
         .then((data) => {
+                
+                ex_word.style.display='block'
                 renderHtml[0].style.display = 'block'
-                wait_data[0].style.display = 'none'
+                // wait_data[0].style.display = 'none'
+                loading.style.display = 'none'
                 const datas = Object.values(data);
                 const dataList = datas[0]
                 console.log(dataList)
@@ -134,7 +135,8 @@ chrome.tabs.query({active: true, currentWindow: true},(tab) => {
                             layout_color2[0].style.display = 'block';
                             renderHtml[0].style.display = 'block';
                         }
-                        wait_data[0].style.display = 'none'
+                        // wait_data[0].style.display = 'none'
+                        loading.style.display = 'none';
                     })
                 }
  
@@ -146,7 +148,8 @@ chrome.tabs.query({active: true, currentWindow: true},(tab) => {
     catch{
        const no_service = document.getElementsByClassName("no_service");
        no_service[0].style.display = 'block';
-       wait_data[0].style.display = 'none';
+    //    wait_data[0].style.display = 'none';
+       loading.style.display = 'none';
     }
     });
 
@@ -158,14 +161,20 @@ chrome.tabs.query({active: true, currentWindow: true},(tab) => {
 const btn = document.getElementsByClassName('btn')
 const renderHtml = document.getElementsByClassName('hidden')
 const wait_data = document.getElementsByClassName('wait_data')
+const loading = document.getElementById('loading')
+const ex_word = document.getElementById('ex_word')
+const main_hidden = document.getElementById('main_hidden')
+
 
 
 
 
 btn[0].onclick = () =>{
-    btn[0].style.display = 'none'
+    main_hidden.style.display='none'
+    // btn[0].style.display = 'none'
     // renderHtml[0].style.display = 'block'
-    wait_data[0].style.display = 'block'
+    // wait_data[0].style.display = 'block'
+    loading.style.display = 'block'
     setUrl();
 
 }

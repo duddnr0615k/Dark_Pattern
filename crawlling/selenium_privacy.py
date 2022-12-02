@@ -40,9 +40,11 @@ def check_info(info):
             if word in info:
                 if list1[0] not in result:
                     result.append(list1[0])
+    #위험도가 1등급인 경우  '주의'등급
     if '주민등록번호' in result or '여권번호' in result or '운전면허' in result or '건강정보' in result or '신용정보' in result or '위치정보' in result:
         result.append(risk_hard)
         return result
+    #위험도 2등급의 개수가 6개 이상일 경우 '주의' 등급
     compare_normal = ['주소','phone','email','생년월일','이름','신체정보','성별']
     marge_normal = list(set(result).intersection(compare_normal))
     if len(marge_normal) >=6 :
@@ -51,6 +53,7 @@ def check_info(info):
     else:
         if '개인정보처리방침없음' in result:
             return result
+        #평시상태는 보통
         result.append(risk_normal)
         return result
 
@@ -69,6 +72,7 @@ def crawling(urls):
         f'user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36')
     websites = ['https://'+urls]
     for website in websites:
+
         driver = webdriver.Chrome('/home/ubuntu/dark_pattern/tool/chromedriver', chrome_options=options)
         driver.get(website)
 
@@ -76,15 +80,15 @@ def crawling(urls):
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36",
             "Accept-Language": "ko-KR,ko;q=0.8,en-US;q=0.5,en;q=0.3",
         }
-        #sleep(2)
-        #print(driver.find_element(By.TAG_NAME,"body").text)
-        #아니 셀레니움은 except로 가기 때문에 이렇게 짬.. 이거 모르게씀,,,
+
+
         #en으로 들어오는 사이트는 ko로 변환하여 한글사이트로 바꿈
         if driver.current_url.find("/en/") != -1:
             privacy_url = driver.current_url.replace("/en/","/ko/")
             driver.get(privacy_url)
             sleep(2)
-            # 스크롤을 최하단으로 내려서 개인정보처리방침을 클릭
+
+        # 스크롤을 최하단으로 내려서 개인정보처리방침을 클릭(전자상거래 사이트와 같이 무한 스크롤 우회)
         last_height = driver.execute_script("return document.body.scrollHeight")
         while True:
                 driver.execute_script("window.scrollTo(0,document.body.scrollHeight);")
@@ -93,12 +97,15 @@ def crawling(urls):
                 if new_height == last_height:
                     break
                 last_height = new_height
+
+        #모든 사이트를 고려하기 위해 아래와 같이 짬ㅋㅋㅋㅋ
         try:
-            #sleep(2)
+
             driver.find_element(By.LINK_TEXT, "개인정보처리방침").send_keys(Keys.ENTER)
             scroll = driver.find_element(By.TAG_NAME, "body")
+            #셀레니움으로 들어가면 스크롤을 막아놓는 사이트를 우회하기 위해 작성
             driver.execute_script("arguments[0].setAttribute('style','overflow:none;')", scroll)
-            #print(driver.current_url)
+
             #새창으로 뜨는 경우 새창으로 이동
             if len(driver.window_handles) >=2:
                 driver.switch_to.window(driver.window_handles[1])
@@ -107,11 +114,10 @@ def crawling(urls):
 
         except NoSuchElementException:
             try:
-                driver.execute_script("window.scrollBy(0, document.body.scrollHeight);")
-                # sleep(2)
                 driver.find_element(By.LINK_TEXT, "개인정보 처리방침").send_keys(Keys.ENTER)
                 scroll = driver.find_element(By.TAG_NAME,"body")
                 driver.execute_script("arguments[0].setAttribute('style','overflow:none;')", scroll)
+
                 if len(driver.window_handles) >= 2:
                     driver.switch_to.window(driver.window_handles[1])
                     scroll = driver.find_element(By.TAG_NAME, "body")
@@ -119,8 +125,6 @@ def crawling(urls):
 
             except NoSuchElementException:
                 try:
-                    # driver.execute_script("window.scrollBy(0, document.body.scrollHeight);")
-                    # sleep(2)
                     driver.find_element(By.LINK_TEXT, "개인정보 취급방침").send_keys(Keys.ENTER)
                     scroll = driver.find_element(By.TAG_NAME, "body")
                     driver.execute_script("arguments[0].setAttribute('style','overflow:none;')", scroll)
@@ -133,8 +137,6 @@ def crawling(urls):
 
                 except NoSuchElementException:
                     try:
-                        # driver.execute_script("window.scrollBy(0, document.body.scrollHeight);")
-                        # sleep(2)
                         driver.find_element(By.LINK_TEXT, "개인정보취급방침").send_keys(Keys.ENTER)
                         scroll = driver.find_element(By.TAG_NAME, "body")
                         driver.execute_script("arguments[0].setAttribute('style','overflow:none;')", scroll)
@@ -143,10 +145,9 @@ def crawling(urls):
                             driver.switch_to.window(driver.window_handles[1])
                             scroll = driver.find_element(By.TAG_NAME, "body")
                             driver.execute_script("arguments[0].setAttribute('style','overflow:none;')", scroll)
+
                     except NoSuchElementException:
                         try:
-                            # driver.execute_script("window.scrollBy(0, document.body.scrollHeight);")
-                            # sleep(2)
                             driver.find_element(By.LINK_TEXT, "개인(신용)정보 처리방침").send_keys(Keys.ENTER)
                             scroll = driver.find_element(By.TAG_NAME, "body")
                             driver.execute_script("arguments[0].setAttribute('style','overflow:none;')", scroll)
@@ -158,11 +159,13 @@ def crawling(urls):
 
                         except NoSuchElementException:
                             try:
-                                # driver.execute_script("window.scrollBy(0, document.body.scrollHeight);")
+                                #a태그가 아닌!! button으로 구현한 사이트 대상
                                 button_list = driver.find_elements(By.TAG_NAME,"button")
                                 if len(button_list) >=1:
                                     for buttons in button_list:
                                         tmp = buttons.text.replace(" ","")
+                                        if tmp == '':
+                                            continue
                                         if tmp =="개인정보처리방침" or tmp =='개인정보취급방침':
                                             buttons.send_keys(Keys.ENTER)
                                             scroll = driver.find_element(By.TAG_NAME, "body")
@@ -174,13 +177,59 @@ def crawling(urls):
                                                 driver.execute_script("arguments[0].setAttribute('style','overflow:none;')",
                                                                       scroll)
                                                 break
+                                        else:
+                                            # 버튼은 있으나, 개인정보처리방침이 안눌리는 경우 아래 코드 실행
+                                            privacy_response = requests.get(website, verify=False, headers=headers)
+
+                                            # 인코딩 안맞는 사이트 맞춰주는 소스
+                                            content_type = privacy_response.headers['content-type']
+                                            if not 'charset' in content_type:
+                                                privacy_response.encoding = privacy_response.apparent_encoding
+
+                                            if privacy_response.status_code == 200:
+                                                html = privacy_response.text
+                                                soup = BeautifulSoup(html, 'html.parser')
+                                                a_tag = soup.find_all("a")
+                                                for a in a_tag:
+                                                    tmp = a.attrs['href']
+                                                    if tmp.lower().find('personalinfo') != -1 or tmp.lower().find(
+                                                            'privacy') != -1 or tmp.lower().find('policy') != -1:
+                                                        privacy_url = tmp
+                                                        if privacy_url.find('www') == -1 and privacy_url.find(
+                                                                'https://') == -1:
+                                                            fqdn = tldextract.extract(website).fqdn
+                                                            privacy_url = 'https://' + fqdn + privacy_url
+                                                            driver.get(privacy_url)
+
+                                                            last_height = driver.execute_script(
+                                                                "return document.body.scrollHeight")
+                                                            while True:
+                                                                driver.execute_script(
+                                                                    "window.scrollTo(0,document.body.scrollHeight);")
+                                                                sleep(0.5)
+                                                                new_height = driver.execute_script(
+                                                                    "return document.body.scrollHeight")
+                                                                if new_height == last_height:
+                                                                    break
+                                                                last_height = new_height
+                                                            break
+                                                        elif privacy_url.find('www') != -1 or privacy_url.find(
+                                                                'https://') != -1:
+                                                            driver.get(tmp)
+                                                            break
+                                                    # else:
+                                                    #     return check_info('개인정보처리방침없음')
+                                                break
 
                                 else:
-                                    # 와디즈처럼 개인정보처리방침이 2개로 되어있는 경우 매칭
+                                    # 버튼은 있으나, 개인정보처리방침이 안눌리는 경우 아래 코드 실행
                                     privacy_response = requests.get(website, verify=False, headers=headers)
+
+                                    #인코딩 안맞는 사이트 맞춰주는 소스
                                     content_type = privacy_response.headers['content-type']
                                     if not 'charset' in content_type:
                                         privacy_response.encoding = privacy_response.apparent_encoding
+
                                     if privacy_response.status_code == 200:
                                         html = privacy_response.text
                                         soup = BeautifulSoup(html, 'html.parser')
@@ -194,6 +243,7 @@ def crawling(urls):
                                                     fqdn = tldextract.extract(website).fqdn
                                                     privacy_url = 'https://' + fqdn + privacy_url
                                                     driver.get(privacy_url)
+
                                                     last_height = driver.execute_script(
                                                         "return document.body.scrollHeight")
                                                     while True:
@@ -215,6 +265,7 @@ def crawling(urls):
 
 
                             except NoSuchElementException:
+                                #위의 코드를 전부 통과하면 최종적으로 되는 곳
                                 # 와디즈처럼 개인정보처리방침이 2개로 되어있는 경우 매칭
                                 privacy_response = requests.get(website, verify=False, headers=headers)
                                 content_type = privacy_response.headers['content-type']
@@ -237,15 +288,16 @@ def crawling(urls):
                                                 driver.get(tmp)
 
                                                 break
-                                            else:
-                                                return check_info('개인정보처리방침없음')
+                                        else:
+                                            return check_info('개인정보처리방침없음')
+
 
 
 
 
 
         sleep(1)
-        # driver.implicitly_wait(60)
+
         try:
             iframes = driver.find_elements(By.TAG_NAME,"iframe")
             # iframe이 존재하는 경우 실행
@@ -270,7 +322,7 @@ def crawling(urls):
                 word = driver.find_element(By.TAG_NAME,"body").text
                 return check_info(word)
         except NoSuchElementException:
-            pass
+            return '개인정보처리방침없음'
 
 
 
@@ -282,7 +334,7 @@ if __name__ == '__main__':
     # print(crawling('www.coolstay.co.kr/'))
     # print(crawling('www.netflix.com/kr/'))
     # print(crawling('watcha.com/'))
-    print(crawling('www.yanolja.com/'))
+    print(crawling('www.wadiz.kr/web/main'))
 
 
 
