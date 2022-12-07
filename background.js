@@ -58,7 +58,7 @@
 			// 숨겨져 있는 항목 체크 (에듀윌,밀리의서재,인터파크)
 			if (roles.style.display == 'none') {
 				const checkbox = roles.innerHTML.includes('checkbox')	
-				if((checkbox && roles.textContent.includes('문자(SMS)')) || (checkbox && roles.textContent.includes('제 3자 제공')) || (checkbox && roles.textContent.includes('개인정보처리')) ){
+				if((checkbox && roles.textContent.includes('SMS')) || (checkbox && roles.textContent.includes('제 3자 제공')) || (checkbox && roles.textContent.includes('개인정보처리')) ){
 					roles.style.display = 'block';
 					roles.style.backgroundColor = 'yellow';
 				}	
