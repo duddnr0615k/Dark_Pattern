@@ -62,7 +62,7 @@ def check_info(info):
 def crawling(urls):
     options = webdriver.ChromeOptions()
     options.add_argument("no-sandbox")
-    # options.add_argument('headless')
+    options.add_argument('headless')
     options.add_argument("window-size=1920,1080")
     options.add_argument("disable-gpu")
     options.add_argument('Accept-Language=ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7')
@@ -339,11 +339,11 @@ if __name__ == '__main__':
     # start = time.time()
     # end = time.time()
     # print(end-start)
-    # crawling()
+    crawling()
     # print(crawling('www.coolstay.co.kr/'))
     # print(crawling('www.netflix.com/kr/'))
     # print(crawling('watcha.com/'))
-    print(crawling('www.eduwill.net/'))
+    # print(crawling('www.eduwill.net/'))
 
 
 
