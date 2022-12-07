@@ -25,7 +25,7 @@ def check_info(info):
     no_privacy = ['개인정보처리방침없음']
     cookie_info = ['쿠키']
     name = ['이름']
-    credit_info=['신용정보','신용 정보','계좌번호','계좌 번호','카드번호','카드 번호']
+    credit_info=['계좌번호','계좌 번호','카드번호','카드 번호']
     location = ['위치정보','위치 정보']
     travel = ['여권번호','여권 번호']
     body_info =['신체정보','신체 정보','몸무게','신장']
@@ -41,7 +41,7 @@ def check_info(info):
                 if list1[0] not in result:
                     result.append(list1[0])
     #위험도가 1등급인 경우  '주의'등급
-    if '주민등록번호' in result or '여권번호' in result or '운전면허' in result or '건강정보' in result or '신용정보' in result or '위치정보' in result:
+    if '주민등록번호' in result or '여권번호' in result or '운전면허' in result or '건강정보' in result or '계좌번호' in result or '위치정보' in result:
         result.append(risk_hard)
         return result
     #위험도 2등급의 개수가 6개 이상일 경우 '주의' 등급
@@ -62,7 +62,7 @@ def check_info(info):
 def crawling(urls):
     options = webdriver.ChromeOptions()
     options.add_argument("no-sandbox")
-    options.add_argument('headless')
+    # options.add_argument('headless')
     options.add_argument("window-size=1920,1080")
     options.add_argument("disable-gpu")
     options.add_argument('Accept-Language=ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7')
@@ -75,6 +75,7 @@ def crawling(urls):
 
         driver = webdriver.Chrome('/home/ubuntu/dark_pattern/tool/chromedriver', chrome_options=options)
         driver.get(website)
+        sleep(2)
 
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36",
@@ -88,15 +89,19 @@ def crawling(urls):
             driver.get(privacy_url)
             sleep(2)
 
-        # 스크롤을 최하단으로 내려서 개인정보처리방침을 클릭(전자상거래 사이트와 같이 무한 스크롤 우회)
-        last_height = driver.execute_script("return document.body.scrollHeight")
-        while True:
-                driver.execute_script("window.scrollTo(0,document.body.scrollHeight);")
-                sleep(0.5)
-                new_height = driver.execute_script("return document.body.scrollHeight")
-                if new_height == last_height:
-                    break
-                last_height = new_height
+
+        try:
+            # 스크롤을 최하단으로 내려서 개인정보처리방침을 클릭(전자상거래 사이트와 같이 무한 스크롤 우회)
+            last_height = driver.execute_script("return document.body.scrollHeight")
+            while True:
+                    driver.execute_script("window.scrollTo(0,document.body.scrollHeight);")
+                    sleep(0.5)
+                    new_height = driver.execute_script("return document.body.scrollHeight")
+                    if new_height == last_height:
+                        break
+                    last_height = new_height
+        except:
+            pass
 
         #모든 사이트를 고려하기 위해 아래와 같이 짬ㅋㅋㅋㅋ
         try:
@@ -200,18 +205,20 @@ def crawling(urls):
                                                             fqdn = tldextract.extract(website).fqdn
                                                             privacy_url = 'https://' + fqdn + privacy_url
                                                             driver.get(privacy_url)
-
-                                                            last_height = driver.execute_script(
-                                                                "return document.body.scrollHeight")
-                                                            while True:
-                                                                driver.execute_script(
-                                                                    "window.scrollTo(0,document.body.scrollHeight);")
-                                                                sleep(0.5)
-                                                                new_height = driver.execute_script(
+                                                            try:
+                                                                last_height = driver.execute_script(
                                                                     "return document.body.scrollHeight")
-                                                                if new_height == last_height:
-                                                                    break
-                                                                last_height = new_height
+                                                                while True:
+                                                                    driver.execute_script(
+                                                                        "window.scrollTo(0,document.body.scrollHeight);")
+                                                                    sleep(0.5)
+                                                                    new_height = driver.execute_script(
+                                                                        "return document.body.scrollHeight")
+                                                                    if new_height == last_height:
+                                                                        break
+                                                                    last_height = new_height
+                                                            except:
+                                                                pass
                                                             break
                                                         elif privacy_url.find('www') != -1 or privacy_url.find(
                                                                 'https://') != -1:
@@ -243,18 +250,20 @@ def crawling(urls):
                                                     fqdn = tldextract.extract(website).fqdn
                                                     privacy_url = 'https://' + fqdn + privacy_url
                                                     driver.get(privacy_url)
-
-                                                    last_height = driver.execute_script(
-                                                        "return document.body.scrollHeight")
-                                                    while True:
-                                                        driver.execute_script(
-                                                            "window.scrollTo(0,document.body.scrollHeight);")
-                                                        sleep(0.5)
-                                                        new_height = driver.execute_script(
+                                                    try:
+                                                        last_height = driver.execute_script(
                                                             "return document.body.scrollHeight")
-                                                        if new_height == last_height:
-                                                            break
-                                                        last_height = new_height
+                                                        while True:
+                                                            driver.execute_script(
+                                                                "window.scrollTo(0,document.body.scrollHeight);")
+                                                            sleep(0.5)
+                                                            new_height = driver.execute_script(
+                                                                "return document.body.scrollHeight")
+                                                            if new_height == last_height:
+                                                                break
+                                                            last_height = new_height
+                                                    except:
+                                                        pass
                                                     break
                                                 elif privacy_url.find('www') != -1 or privacy_url.find('https://')!=-1:
                                                     driver.get(tmp)
@@ -330,11 +339,11 @@ if __name__ == '__main__':
     # start = time.time()
     # end = time.time()
     # print(end-start)
-    crawling()
+    # crawling()
     # print(crawling('www.coolstay.co.kr/'))
     # print(crawling('www.netflix.com/kr/'))
     # print(crawling('watcha.com/'))
-    # print(crawling('www.wadiz.kr/web/main'))
+    print(crawling('www.eduwill.net/'))
 
 
 
