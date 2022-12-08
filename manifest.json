@@ -8,12 +8,13 @@
 		"48": "/images/icon48x48.png",
 		"128": "/images/icon128x128.png"
 	},
-	"description": "국내 사이트의 다크 패턴을 쉽게 식별할 수 있게 해줍니다!",
+	"description": "개인정보 다크패턴 식별하기 편하게 도와줍니다.",
 	"background": {
 		"service_worker":"background.js"
 	},
 	"permissions":[
 		"scripting"
+
 	],
 	"host_permissions":[
 		"<all_urls>"

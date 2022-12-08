@@ -1,342 +1,73 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-  <script src="all.js" charset="UTF-8"></script>
-  <style>
-    body{
-      width: 300px;
-      height: 500px;
-      margin : 0px;
-    }
-    #first_title{
-      /* border: 1px solid; */
-      width: 163px;
-      height: 51px;
-      border-radius: 5px;
-      margin : auto;
-      background-color: #00BBFF;
-      text-align: center;
-      line-height: 50px;
-      color: white;
-      font-family: 'Noto Sans KR', sans-serif;
-      font-weight: bold;
-      position: relative;
-      z-index: 2;
-      font-size: 15px;
-    }
-    .privacy_title{
-      /* border: 1px solid; */
-      width: 163px;
-      height: 51px;
-      border-radius: 8px;
-      margin : auto;
-      background-color: #00BBFF;
-      text-align: center;
-      line-height: 50px;
-      color: white;
-      font-family: 'Noto Sans KR', sans-serif;
-      font-weight: bold;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-      position: relative;
-      z-index: 2;
-      font-size: 15px;
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css"/>
+    <script src="all.js" charset="UTF-8"></script>
 
-  
-      
-    }
-    .privacy_danger{
-  
-      width: 140px;
-      height: 37px;
-      border-radius: 8px;
-      margin : auto;
-      background-color: #00BBFF;
-      text-align: center;
-      line-height: 30px;
-      color: white;
-      font-family: 'Noto Sans KR', sans-serif;
-      font-weight: bold;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-      font-size: 15px;
-      top:10px;
-      position: relative;
-      z-index: 2;
-
-      
-    }
-    .layout_color1{
-      width: 300px;
-      height: 75px;
-      background-color: #D9D9D9;
-      position: relative;
-    
-    }
-    #field{
-      width: 300px;
-      height: 238px;
-      background-color: #D9D9D9;
-      position: relative;
-      top: 44px;
-
-    }
-    .layout_color2{
-      width: 300px;
-      height: 238px;
-      background-color: #D9D9D9;
-      position: relative;
-      display: none;
-    
-
-    }
-    
-    #danger_level{
-      width: 300px;
-      height: 50px;
-      padding-top: 20px;
-    }
-    .normal{
-      display: none;
-    }
-    .careful{
-      display: none;
-    }
-
-    .icon_call{
-      width: 46px;
-      height: 59px;
-    }
-    #travel{
-      display: none;
-    }
-    #drive{
-      display: none;
-    }
-    #health{
-      display: none;
-    }
-    #call{
-      display: none;
-    }
-    #address{
-      display: none;
-    }
-    #email{
-      display: none;
-    }
-    #gender{
-      display: none;
-    }
-    #device{
-      display: none;
-    }
-    #cookie{
-      display: none;
-    }
-    #birthday{
-      display: none;
-    }
-    #human_id{
-      display: none;
-    }
-    #credit{
-      display: none;
-    }
-    #location{
-      display: none;
-    }
-    #body_info{
-      display: none;
-    }
-    .no_info{
-      display: none;
-      position: absolute;
-      text-align: center;
-      margin : auto;
-      width: 200px;
-      height: 50px;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%,-50%);
-    }
-
-    /* .wait_data{
-      display: none;
-      position: absolute;
-      text-align: center;
-      margin : auto;
-      width: 200px;
-      height: 50px;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%,-50%);
-    } */
-    .no_service{
-      display: none;
-      position: absolute;
-      text-align: center;
-      margin : auto;
-      width: 200px;
-      height: 50px;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%,-50%);
-    }
-    .no_privacy{
-      display: none;
-      position: absolute;
-      text-align: center;
-      margin : auto;
-      width: 200px;
-      height: 50px;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%,-50%);
-    }
-    .hidden{
-      display: none;
-    }
-
-    button{
-    width: 163px;
-    height: 51px;
-    border-radius: 15px;
-    background-color: #00BBFF;
-    font-weight: bold;
-    color : #FFFFFF;
-    font-family: 'Noto Sans KR', sans-serif;
-    border-style: none;
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px;
-    padding-left: 15px;
-    padding-right: 15px;
-    text-align: center;
-    transition-duration: 0.3s;
-    display: inline-block;
-    margin: auto;
-    margin-top: 120px;
-    margin-left: 65px;
- }
- button:active{
-     margin-top: 120px;
-     box-shadow: none;
- }
-#hard{
-  display: none;
-}
-#normal{
-  display: none;
-}
-
-#easy{
-  display: none;
-}
-
-#loading{
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  display: none;
-}
-.container{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#ex_word{
-  font-family: 'Noto Sans KR', sans-serif;
-  font-weight: bold;
-  display: none;
-}
-.font_draw{
-  position: absolute;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-weight: bold;
-  text-align: center;
-  font-size: 15px;
-  left: 50%;
-  top: 30%;
-  transform: translate(-50%,-50%);
-  width: 300px;
-}
-
-
-  </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="hidden">
-    <div class ="privacy_title">
-      개인정보 위험도
+    <div id="main_hidden">
+        <div id="main_word_white">Privacy Dark Pattern Tool</div>
+        <img id="white_box"/>
+        <div id="main_word_white" style="position: relative; top: 90px;">현재 사이트에서 수집하는 개인정보를 <br> 확인하시겠습니까?</div>
+        <button class="btn" type="button">시작하기</button>
     </div>
-    <div class="layout_color1" style="bottom: 10px;">
-      <img id="danger_level" class="normal" src="./images/보통.png">
-      <img id="danger_level" class="careful" src="./images/신중.png">
-    </div>
-  </div>  
-    <div id="hard">
-      <div class="privacy_danger" style="margin-top:30px; color: orange;">
-        주의
-      </div>
-      
-    </div>
-    <div id="normal">
-      <div class="privacy_danger" style="margin-top:30px; color: yellow;">
-        보통
+    <img class ="reverse_icon"/>
+    <div id ="loading">
+          <img id ="hourglass_white"/>
+          <p class="font_wait">잠시만 기다려주세요...</p>
       </div>
     </div>
-      <div class="layout_color2">
-        <div style="display: flex; justify-content: space-between; padding-top: 80px; flex-wrap: wrap;">
-          <img  id="human_id" class = "icon_call" src="./images/human_id.png" style="width: 65px;">
-          <img  id="travel" class = "icon_call" src="./images/travel.png">
-          <img  id="drive" class = "icon_call" src="./images/drive.png" style="width: 65px;" >
-          <img  id="health" class = "icon_call" src="./images/health.png">
-          <img  id="credit" class = "icon_call" src="./images/credit.png">
-          <img  id="location" class = "icon_call" src="./images/location.png">
-
-          <img id="call" class = "icon_call" src="./images/call.png">
-          <img id="address" class = "icon_call" src="./images/address.png">
-          <img id="email" class = "icon_call" src="./images/email.png">
-          <img id="birthday" class = "icon_call" src="./images/birthday.png">
-          <img id="name" class = "icon_call" src="./images/name.png">
-          <img id="body_info" class = "icon_call" src="./images/body_info.png">
-          <img id="gender" class = "icon_call" src="./images/gender.png">
-
-          <img id="device" class = "icon_call" src="./images/device.png">
-          <img id="cookie" class = "icon_call" src="./images/cookie.png">
-        </div>
-      </div>
-      <div id="ex_word">
-        위험도 수치는 참고용으로만 확인해 주시길 바랍니다.
-        <img src="./images/happy.png" style="width: 61px; height: 61px; margin-left: 120px;">
-      </div>
-
+    <div id="info_hidden">
+        <div id="main_word_white">개인정보 위험도</div>
+        <img class="danger_bar_normal"/>
+        <img class="danger_bar_caution"/>
+            <div id="main_word_white" style="position: absolute; top: 126px; left: 5px;">위험등급</div>
+            
+                <div id="field_total">
+                    <div id="field_small">1등급</div>
+                    <div id="field_large">
+                        <img id="human_id" src="./images/주민등록.png">
+                        <img id="drive" src="./images/면허.png">
+                        <img id="health" src="./images/건강.png">
+                        <img id="location" src="./images/위치.png">
+                        <img id="travel" src="./images/여권.png">
+                        <img id="credit" src="./images/신용정보.png">
+                    </div>
+                </div>
+                <div id="field_total">
+                    <div id="field_small">2등급</div>
+                    <div id="field_large">
+                        <img id="call" src="./images/전화번호.png">
+                        <img id="email" src="./images/이메일.png">
+                        <img id="gender" src="./images/성별.png">
+                        <img id="address" src="./images/주소.png">
+                        <img id="birthday" src="./images/생년월일.png">
+                        <img id="name" src="./images/이름.png">
+                        <img id="body_info" src="./images/신체정보.png">
+                    </div>
+                </div>
+                <div id="field_total">
+                    <div id="field_small">3등급</div>
+                    <div id="field_large">
+                        <img id="device" src="./images/기기정보.png">
+                        <img id="cookie" src="./images/쿠키.png">
+                    </div>
+                    <div id="main_word_white">위험도 수치는 참고용으로만 확인해주세요</div>
+                </div>
+    
+    </div> 
+    <div id="main_word_white" class="no_info">데이터가 존재하지 않아요</div>
+    <div id="main_word_white" class="no_privacy">개인정보 처리방침이 없어요</div>           
+        
+        
     
 
-
-  <h3 class="no_info">정보가 없습니다.</h3>
-  <!-- <h3 class="wait_data">잠시만 기다려주세요!!</h3> -->
-  <h3 class="no_service">서비스를 실행할 수 없는 사이트입니다.</h3>
-  <h3 class="no_privacy">개인정보처리방침이 없습니다.</h3>
-
-  <div id="main_hidden">
-    <div id="first_title">개인정보 라벨링</div>
-    <div id="field">
-      <p class="font_draw">현재 사이트에서 수집하는 개인정보를<br>확인하시겠습니까?</p>
-      <p class="font_draw" style="top:70%">분석 시간은 10~15초입니다.</p>
-    </div>
-    <button class="btn" type="button">시작하기</button>
-  </div>  
-  <div id ="loading">
-    <div class="container" style="display: flex; flex-direction: column; justify-content: space-evenly;">
-      <i class="fas fa-spinner fa-10x fa-spin"></i>
-      <p style=" font-family: 'Noto Sans KR', sans-serif; font-size: 20px; font-weight: bold;">분석하는 중입니다...</p>
-      
-  </div>
-
-  <script src="render.js" charset='UTF-8'></script>
+    <script src="./js/reverse.js" charset='UTF-8'></script>
+    <script src="./js/render.js" charset='UTF-8'></script>
 </body>
 </html>

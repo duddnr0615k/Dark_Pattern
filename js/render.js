@@ -4,7 +4,6 @@
 function setUrl (){
 chrome.tabs.query({active: true, currentWindow: true},(tab) => {
 
-
     try{
         let tabUrl = tab[0].url 
         let url = 'http://3.34.215.57/api/' + tabUrl.replace('https://','').replaceAll('/','...'); //django에서 https://와 /를 인식못해서 야매로함
@@ -22,17 +21,15 @@ chrome.tabs.query({active: true, currentWindow: true},(tab) => {
         .then(response => response.json())
         .then((data) => {
                 
-                ex_word.style.display='block'
-                renderHtml[0].style.display = 'block'
-                // wait_data[0].style.display = 'none'
-                loading.style.display = 'none'
                 const datas = Object.values(data);
                 const dataList = datas[0]
-                console.log(dataList)
+                // console.log(dataList)
+                loading.style.display = 'none'
+                info_hidden.style.display ='block'
                 if (dataList.length === 0) {
                     const no_info = document.getElementsByClassName('no_info');
                     no_info[0].style.display = 'block';
-                    renderHtml[0].style.display = 'none';
+                    main_hidden.style.display = 'none';
                 }
                 else{
                     dataList.find(e => {
@@ -97,7 +94,7 @@ chrome.tabs.query({active: true, currentWindow: true},(tab) => {
                             const name = document.getElementById("name");
                             name.style.display = 'block';
                         }
-                        else if(e ==='신용정보'){
+                        else if(e ==='계좌번호'){
                             const credit = document.getElementById("credit");
                             credit.style.display = 'block';
                             
@@ -118,24 +115,15 @@ chrome.tabs.query({active: true, currentWindow: true},(tab) => {
                         }
 
                         else if(e ==='보통'){
-                            const normal =document.getElementById('normal');
-                            const layout_color2 = document.getElementsByClassName('layout_color2')
-                            const normal_bar = document.getElementsByClassName('normal');
-                            normal.style.display = 'block';
+                            const normal_bar = document.getElementsByClassName('danger_bar_normal');
                             normal_bar[0].style.display ='block';
-                            layout_color2[0].style.display = 'block';
-                            renderHtml[0].style.display = 'block';
+                            // main_hidden.style.display = 'block';
                         }
                         else if(e ==='신중'){
-                            const hard =document.getElementById('hard');
-                            const layout_color2 = document.getElementsByClassName('layout_color2');
-                            const hard_bar = document.getElementsByClassName('careful');
+                            const hard_bar = document.getElementsByClassName('danger_bar_caution');
                             hard_bar[0].style.display = 'block';
-                            hard.style.display = 'block';
-                            layout_color2[0].style.display = 'block';
-                            renderHtml[0].style.display = 'block';
+                            // main_hidden.style.display = 'block';
                         }
-                        // wait_data[0].style.display = 'none'
                         loading.style.display = 'none';
                     })
                 }
@@ -148,32 +136,23 @@ chrome.tabs.query({active: true, currentWindow: true},(tab) => {
     catch{
        const no_service = document.getElementsByClassName("no_service");
        no_service[0].style.display = 'block';
-    //    wait_data[0].style.display = 'none';
        loading.style.display = 'none';
     }
     });
 
 
-    
 }
 
 
 const btn = document.getElementsByClassName('btn')
-const renderHtml = document.getElementsByClassName('hidden')
-const wait_data = document.getElementsByClassName('wait_data')
-const loading = document.getElementById('loading')
-const ex_word = document.getElementById('ex_word')
+
 const main_hidden = document.getElementById('main_hidden')
 
-
-
-
+const loading = document.getElementById('loading')
+const info_hidden = document.getElementById('info_hidden')
 
 btn[0].onclick = () =>{
     main_hidden.style.display='none'
-    // btn[0].style.display = 'none'
-    // renderHtml[0].style.display = 'block'
-    // wait_data[0].style.display = 'block'
     loading.style.display = 'block'
     setUrl();
 
