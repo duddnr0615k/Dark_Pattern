@@ -5,9 +5,7 @@ body{
     margin-left: 0;
     margin-right: 0;
 }
-#main_hidden{
-    /* display: none; */
-}
+
 #main_word_white{
     font-family: 'Noto Sans KR', sans-serif;
     text-align: center;
@@ -220,4 +218,34 @@ button{
 
 #field_total{
     height: 110px;
+}
+
+.question{
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 50px;
+    left: 62px;
+    content: url("../images/물음표_검정.png");
+
+}
+.arrow_box{
+    
+    background-color: #343434;
+    z-index: 9999;
+    position: absolute;
+    width: 230px;
+    top: 40px;
+    padding: 5px;
+    display: none;
+    border: 2px solid;
+    border-color: #343434;
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: bold;
+    color: white;
+    font-family: 'Noto Sans KR',sans-serif;
+}
+.question:hover + p.arrow_box {
+display: block;
 }
