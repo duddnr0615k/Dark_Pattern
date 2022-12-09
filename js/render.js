@@ -83,6 +83,7 @@ chrome.tabs.query({active: true, currentWindow: true},(tab) => {
                         else if(e ==='개인정보처리방침없음'){
                             const no_privacy = document.getElementsByClassName('no_privacy');
                             no_privacy[0].style.display = 'block';
+                            info_hidden.style.display='none';
                             
                         }
                         else if(e ==='쿠키'){

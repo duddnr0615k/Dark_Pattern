@@ -132,12 +132,21 @@ button{
 
 .no_info{
     display: none;
+    position: relative;
+    top: 50%;
 }
 
 .no_privacy{
     display: none;
+    position: relative;
+    top: 50%;
 }
 
+.no_service{
+    display: none;
+    position: relative;
+    top: 50%;
+}
 #human_id{
     width: 43px;
     height: 43px;
