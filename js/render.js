@@ -30,6 +30,7 @@ chrome.tabs.query({active: true, currentWindow: true},(tab) => {
                     const no_info = document.getElementsByClassName('no_info');
                     no_info[0].style.display = 'block';
                     main_hidden.style.display = 'none';
+                    info_hidden.style.display = 'none';
                 }
                 else{
                     dataList.find(e => {
@@ -116,13 +117,13 @@ chrome.tabs.query({active: true, currentWindow: true},(tab) => {
                         }
 
                         else if(e ==='보통'){
-                            const normal_bar = document.getElementsByClassName('danger_bar_normal');
-                            normal_bar[0].style.display ='block';
+                            // const normal_bar = document.getElementsByClassName('danger_bar_normal');
+                            // normal_bar[0].style.display ='block';
                             // main_hidden.style.display = 'block';
                         }
                         else if(e ==='신중'){
-                            const hard_bar = document.getElementsByClassName('danger_bar_caution');
-                            hard_bar[0].style.display = 'block';
+                            // const hard_bar = document.getElementsByClassName('danger_bar_caution');
+                            // hard_bar[0].style.display = 'block';
                             // main_hidden.style.display = 'block';
                         }
                         loading.style.display = 'none';

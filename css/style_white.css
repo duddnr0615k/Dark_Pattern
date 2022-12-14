@@ -77,23 +77,23 @@ button{
     height: 80px;
     content: url("../images/hourglass_black.png");
 }
-.danger_bar_normal{
+/* .danger_bar_normal{
     width: 300px;
     height: 49px;
     position: relative;
     top: 20px;
     content: url("../images/보통_검정.png");
     display: none;
-}
+} */
 
-.danger_bar_caution{
+/* .danger_bar_caution{
     width: 300px;
     height: 49px;
     position: relative;
     top: 20px;
     content: url("../images/주의_검정.png");
     display: none;
-}
+} */
 #content{
     width: 303px;
     height: 309px;

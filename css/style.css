@@ -78,7 +78,7 @@ button{
     height: 80px;
     content: url("../images/hourglass_white.png");
 }
-.danger_bar_normal{
+/* .danger_bar_normal{
     width: 300px;
     height: 49px;
     position: relative;
@@ -93,7 +93,7 @@ button{
     top: 20px;
     content: url("../images/주의_하얀.png");
     display: none;
-}
+} */
 
 #content{
     width: 303px;

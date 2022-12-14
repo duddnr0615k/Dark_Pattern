@@ -50,6 +50,8 @@ def check_info(info):
     if len(marge_normal) >=6 :
         marge_normal.append(risk_hard)
         return marge_normal
+    elif len(marge_normal) == 0 :
+        return result
     else:
         if '개인정보처리방침없음' in result:
             return result
@@ -88,6 +90,14 @@ def crawling(urls):
             privacy_url = driver.current_url.replace("/en/","/ko/")
             driver.get(privacy_url)
             sleep(2)
+        #팝업창 제거
+        main = driver.window_handles
+        for i in main :
+            if i != main[0]:
+                driver.switch_to.window(i)
+                driver.close()
+        driver.switch_to.window(main[0])
+
 
 
         try:
@@ -339,11 +349,11 @@ if __name__ == '__main__':
     # start = time.time()
     # end = time.time()
     # print(end-start)
-    crawling()
+    # crawling()
     # print(crawling('www.coolstay.co.kr/'))
     # print(crawling('www.netflix.com/kr/'))
     # print(crawling('watcha.com/'))
-    # print(crawling('www.eduwill.net/'))
+    print(crawling('www.stackoverflow.com/'))
 
 
 
