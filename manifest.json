@@ -1,6 +1,6 @@
 {
 	"name": "Privacy Dark Pattern tool",
-	"version": "2.2",
+	"version": "2.3",
 	"manifest_version": 3,
 	"icons":{
 		"16": "/images/icon16x16.png",
