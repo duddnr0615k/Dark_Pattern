@@ -6,7 +6,7 @@ chrome.tabs.query({active: true, currentWindow: true},(tab) => {
 
     try{
         let tabUrl = tab[0].url 
-        let url = 'http://3.34.215.57/api/' + tabUrl.replace('https://','').replaceAll('/','...'); //django에서 https://와 /를 인식못해서 야매로함
+        let url = 'http://54.180.213.248/api/' + tabUrl.replace('https://','').replaceAll('/','...'); //django에서 https://와 /를 인식못해서 야매로함
         const data = {url : tabUrl};
         fetch(url,{
             method: 'GET',
