@@ -23,11 +23,12 @@ class Privacy_Crawling(check_info):
         return self.crawling()
 
 
-
+    #chrome버전에 맞는 드라이버 설치
     def check_chrome_driver(self):
         chrome_driver = ChromeDriverManager().install()
         return chrome_driver
 
+    #맨 하단으로 이동
     def infinity_scroll(self):
         last_height = self.driver.execute_script("return document.body.scrollHeight")
         while True:
@@ -37,10 +38,9 @@ class Privacy_Crawling(check_info):
             if new_height == last_height:
                 break
             last_height = new_height
-
+    #iframe존재할 시 아래 함수 실행
     def iframe_exist(self):
         iframes = self.driver.find_elements(By.TAG_NAME, "iframe")
-        # iframe이 존재하는 경우 실행
         if iframes:
             for iframe in iframes:
                 iframe_url = iframe.get_attribute("src")
@@ -62,9 +62,8 @@ class Privacy_Crawling(check_info):
         else:
             word = self.driver.find_element(By.TAG_NAME, "body").text
             return self.Check_info(word)
-
+    #selenium으로 개인정보처리방침 매칭이 안되는 경우 (와디즈)
     def bs4_crawling(self):
-        # 버튼은 있으나, 개인정보처리방침이 안눌리는 경우 아래 코드 실행
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36",
             "Accept-Language": "ko-KR,ko;q=0.8,en-US;q=0.5,en;q=0.3",
@@ -102,7 +101,7 @@ class Privacy_Crawling(check_info):
                         word = self.driver.find_element(By.TAG_NAME, "body").text
                         return self.Check_info(word)
             return self.Check_info("개인정보처리방침없음")
-
+    #크롤링
     def crawling(self):
         options = webdriver.ChromeOptions()
         options.add_argument("no-sandbox")
@@ -138,12 +137,11 @@ class Privacy_Crawling(check_info):
             self.driver.switch_to.window(main[0])
 
             try:
-                # 스크롤을 최하단으로 내려서 개인정보처리방침을 클릭(전자상거래 사이트와 같이 무한 스크롤 우회)
                 self.infinity_scroll()
             except:
                 pass
 
-            # 모든 사이트를 고려하기 위해 아래와 같이 짬ㅋㅋㅋㅋ
+            # 모든 사이트의 개인정보처리방침을 매칭하기 위한 방법
             try:
                 self.driver.find_element(By.LINK_TEXT, "개인정보처리방침").send_keys(Keys.ENTER)
                 scroll = self.driver.find_element(By.TAG_NAME, "body")
