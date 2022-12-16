@@ -3,7 +3,6 @@ import time
 #외부 라이브러리
 from check_info import check_info
 
-
 from selenium import webdriver
 from selenium.common import NoSuchElementException
 from selenium.webdriver.common.by import By
@@ -20,7 +19,10 @@ class Privacy_Crawling(check_info):
         super().__init__()
         self.urls = urls
         self.check_chrome_driver()
-        print(self.crawling())
+    def __call__(self):
+        return self.crawling()
+
+
 
     def check_chrome_driver(self):
         chrome_driver = ChromeDriverManager().install()
@@ -238,7 +240,13 @@ class Privacy_Crawling(check_info):
                 return '개인정보처리방침없음'
 
 if __name__ == '__main__':
-    Privacy_Crawling()
+    obj = Privacy_Crawling()
+    obj()
+
+
+
+
+
 
 
 
