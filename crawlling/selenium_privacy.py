@@ -227,31 +227,8 @@ class Privacy_Crawling(check_info):
                                         return self.bs4_crawling()
 
                                 except NoSuchElementException:
-                                    # 위의 코드를 전부 통과하면 최종적으로 되는 곳
-                                    # 와디즈처럼 개인정보처리방침이 2개로 되어있는 경우 매칭
-                                    privacy_response = requests.get(website, verify=False, headers=headers)
-                                    content_type = privacy_response.headers['content-type']
-                                    if not 'charset' in content_type:
-                                        privacy_response.encoding = privacy_response.apparent_encoding
-                                    if privacy_response.status_code == 200:
-                                        html = privacy_response.text
-                                        soup = BeautifulSoup(html, 'html.parser')
-                                        a_tag = soup.find_all("a")
-                                        for a in a_tag:
-                                            tmp = a.attrs['href']
-                                            if tmp.lower().find('personalinfo') != -1 or tmp.lower().find(
-                                                    'privacy') != -1 or tmp.lower().find('policy') != -1:
-                                                privacy_url = tmp
-                                                if privacy_url.find('www') == -1:
-                                                    fqdn = tldextract.extract(website).fqdn
-                                                    privacy_url = 'https://' + fqdn + privacy_url
-                                                    self.driver.get(privacy_url)
-                                                    break
-                                                elif privacy_url.find('www') != -1:
-                                                    self.driver.get(tmp)
-                                                    break
-                                            else:
-                                                return self.Check_info('개인정보처리방침없음')
+                                    return self.bs4_crawling()
+
 
             sleep(1)
 
