@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from time import sleep
 from bs4 import BeautifulSoup
+from webdriver_manager.chrome import ChromeDriverManager
 import requests
 import tldextract
 
@@ -60,6 +61,10 @@ def check_info(info):
         return result
 
 
+#크롬드라이버 버전 맞게 설치해줌
+def check_chrome_driver():
+    chrome_driver = ChromeDriverManager().install()
+    return chrome_driver
 
 def crawling(urls):
     options = webdriver.ChromeOptions()
@@ -75,7 +80,8 @@ def crawling(urls):
     websites = ['https://'+urls]
     for website in websites:
 
-        driver = webdriver.Chrome('/home/ubuntu/dark_pattern/tool/chromedriver', chrome_options=options)
+        # driver = webdriver.Chrome('/home/ubuntu/dark_pattern/tool/chromedriver', chrome_options=options)
+        driver = webdriver.Chrome(check_chrome_driver(), chrome_options=options)
         driver.get(website)
         sleep(2)
 
@@ -346,14 +352,9 @@ def crawling(urls):
 
 
 if __name__ == '__main__':
-    # start = time.time()
-    # end = time.time()
-    # print(end-start)
-    # crawling()
-    # print(crawling('www.coolstay.co.kr/'))
-    # print(crawling('www.netflix.com/kr/'))
-    # print(crawling('watcha.com/'))
-    print(crawling('www.stackoverflow.com/'))
+    crawling()
+
+
 
 
 
